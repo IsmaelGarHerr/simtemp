@@ -12,13 +12,13 @@
 
 You will implement **“Virtual Sensor + Alert Path”**:
 
-- **Kernel module (C)**: out‑of‑tree platform driver producing periodic “temperature” samples.
-- **User↔Kernel communication**: character device with `read()` + `poll/epoll`; configuration via `sysfs` and/or `ioctl`.
-- **Device Tree (DT)**: DTS snippet + proper binding and property parsing at kernel driver.
-- **User space app (Python **or **C++**): CLI required; optional GUI to visualize readings/alerts.
-- **Shell scripts**: build, run demo, (optional) lint.
-- **Git hygiene**: clear commit history/branches/tags.
-- **Design quality**: modularity, locking choices, API contract, problem‑solving write‑ups.
+- [ ] **Kernel module (C)**: out‑of‑tree platform driver producing periodic “temperature” samples.
+- [ ] **User↔Kernel communication**: character device with `read()` + `poll/epoll`; configuration via `sysfs` and/or `ioctl`.
+- [ ] **Device Tree (DT)**: DTS snippet + proper binding and property parsing at kernel driver.
+- [ ] **User space app (Python **or **C++**): CLI required; optional GUI to visualize readings/alerts.
+- [ ] **Shell scripts**: build, run demo, (optional) lint.
+- [ ] **Git hygiene**: clear commit history/branches/tags.
+- [ ] **Design quality**: modularity, locking choices, API contract, problem‑solving write‑ups.
 
 ---
 
@@ -27,18 +27,18 @@ You will implement **“Virtual Sensor + Alert Path”**:
 ### 2.1 Kernel Module: `nxp_simtemp`
 
 **Responsibilities**
-- Register a **platform driver**; bind using DT `compatible = "nxp,simtemp"`.
-- Produce simulated temperature samples every *N* ms (configurable) using a timer/hrtimer/workqueue.
-- Expose a **character device** `/dev/simtemp` (via `miscdevice` or `cdev`).
-- Support **blocking reads** returning a binary record with timestamp and temperature.
+- [ ] Register a **platform driver**; bind using DT `compatible = "nxp,simtemp"`.
+- [ ] Produce simulated temperature samples every *N* ms (configurable) using a timer/hrtimer/workqueue.
+- [ ] Expose a **character device** `/dev/simtemp` (via `miscdevice` or `cdev`).
+- [ ] Support **blocking reads** returning a binary record with timestamp and temperature.
 - Support **`poll()`/`epoll()`**:
-  - Wake on **new sample** availability.
-  - Wake when **threshold is crossed** (separate event bit).
+  - [ ] Wake on **new sample** availability.
+  - [ ] Wake when **threshold is crossed** (separate event bit).
 - Provide **sysfs** controls under `/sys/class/.../simtemp/`:
-  - `sampling_ms` (RW): update period.
-  - `threshold_mC` (RW): alert threshold in milli‑°C.
-  - `mode` (RW): e.g., `normal|noisy|ramp`.
-  - `stats` (RO): counters (updates, alerts, last error).
+  - [ ] `sampling_ms` (RW): update period.
+  - [ ] `threshold_mC` (RW): alert threshold in milli‑°C.
+  - [ ] `mode` (RW): e.g., `normal|noisy|ramp`.
+  - [ ] `stats` (RO): counters (updates, alerts, last error).
 - Optional: **`ioctl`** for atomic/batch config.
 
 **Binary record (example)**
